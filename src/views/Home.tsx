@@ -1,10 +1,13 @@
-import { Container } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 
 import Navbar from "../components/Navbar"
+//@ts-ignore
+import LogoBW from '../assets/LogoBW.jpg'
+import '../App.css'
+
 
 
 export default function Home():JSX.Element {
-
   return (
     <>
       <div>
@@ -15,7 +18,11 @@ export default function Home():JSX.Element {
         >
           <Navbar dark={false} />
           <Container>
-            Amazia Thompson
+            <Grid container justifyContent={'center'}>
+              <Grid item xs={5} md={4} className="fade-in-bottom">
+                <img src={LogoBW} alt={'Logo'} width={'100%'} style={{borderRadius: 30}}/>
+              </Grid>
+            </Grid>
           </Container>
         
         </div>
