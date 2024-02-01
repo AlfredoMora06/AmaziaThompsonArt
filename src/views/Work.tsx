@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar"
 import '../App.css'
 
 
-export default function About():JSX.Element {
+export default function Work():JSX.Element {
 
   return (
     <>
@@ -18,12 +18,7 @@ export default function About():JSX.Element {
           <Container className="fade-in-bottom">
             <Grid container mt={5}>
               <Grid item xs={12} mb={1}>
-                <Typography variant="h1" fontSize={35} align="center">Meet Amazia</Typography>
-              </Grid>
-            </Grid>
-            <Grid container mt={5}>
-              <Grid item xs={12} mb={1}>
-                <Typography variant="h6" align="center">Let me know what you want me to put here...</Typography>
+                <Typography variant="h6" align="center">Let me know how you want me to organize here...</Typography>
               </Grid>
             </Grid>
           </Container>
