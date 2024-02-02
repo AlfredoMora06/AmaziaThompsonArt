@@ -11,6 +11,7 @@ import Button from "@mui/material/Button"
 
 //@ts-ignore
 import ArtLogo from '../assets/Art_Logo.jpg'
+import DropdownMenuItem, { TMenuItem } from "./DropdownMenuItem"
 
 
 type NavbarProps = {
@@ -21,6 +22,7 @@ export default function Navbar (
   { dark }: NavbarProps
 ): JSX.Element {
   const [drawer, setDrawer] = React.useState(false)
+  const [menuShowingDropdown, setMenuShowingDropdown] = React.useState("");
   const navigate = useNavigate()
   const location = useLocation()  
 
@@ -38,6 +40,17 @@ export default function Navbar (
     { title: 'Contact', link: "../0/contact"},
   ]
 
+  const workPages: TMenuItem = { 
+    title: "Work", 
+    pathname: "../0/work",
+    subMenus: [
+      {
+        title: "Minimalism",
+        pathname: "../0/work/minimalism"
+      },
+    ]
+  }
+
   const toggleDrawer = (open: boolean) =>  (event: React.KeyboardEvent | React.MouseEvent) => { 
     setDrawer(open)
   }
@@ -46,6 +59,10 @@ export default function Navbar (
     navigate(link)
     toggleDrawer(false)
   }
+  
+  const handleMenuShowingDropdownChange = React.useCallback((menuTitle: string) => {
+    setMenuShowingDropdown(menuTitle);
+  }, [])
 
   const list = () => (
     <Box
@@ -111,6 +128,21 @@ export default function Navbar (
             </Grid>
             <Grid container item xs={11} justifyContent={"flex-end"} alignContent={"center"} ml={8}>
               {pages.map((page, index) => {
+                const samePathname = location.pathname === page.link.slice(2)
+
+                if(page.title === "Work"){
+                  return (
+                    <Grid item key={index}>
+                      <DropdownMenuItem
+                        menuItem={workPages}
+                        menuShowingDropdown={menuShowingDropdown}
+                        setMenuShowingDropdown={handleMenuShowingDropdownChange}
+                        samePathname={samePathname}
+                      />
+                    </Grid>
+                  )
+                }
+
                 return (
                   <div key={index}>
                     <Button
