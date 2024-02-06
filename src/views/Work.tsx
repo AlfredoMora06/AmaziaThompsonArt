@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Theme, Typography } from "@mui/material"
+import { Button, Container, Grid, Theme, Typography, useTheme, useMediaQuery } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import { useNavigate } from "react-router-dom"
 
@@ -35,6 +35,8 @@ const useStyles = makeStyles<Theme>(() => ({
 export default function Work():JSX.Element {
   const classes = useStyles()
   const navigate = useNavigate()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
   return (
     <>
@@ -64,6 +66,18 @@ export default function Work():JSX.Element {
                   </div>
                 </Button>
               </Grid>
+
+              { isMobile
+                ? <Grid item xs={10} md={5} mt={4}>
+                  <Typography variant="h1" fontSize={30} align="center">
+                    A Digital Minimalistic And Abstract Expression 
+                  </Typography>
+                  <Typography variant="h1" fontSize={30} align="center">
+                    Printed on Metal
+                  </Typography>
+                </Grid>
+                : <></>
+              }
             </Grid>
           </Container>
         </div>

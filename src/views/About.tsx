@@ -65,7 +65,7 @@ export default function About():JSX.Element {
               <Grid item xs={12}>
                 <Button
                   variant="text"
-                  sx={{color: "black", textTransform: 'inherit', paddingX: 0}}
+                  sx={{color: "black", textTransform: 'inherit', paddingX: 0, textAlign: 'left'}}
                   onClick={() => {
                     window.open(
                       'https://moonoura.com/artist-spotlight',
