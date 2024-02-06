@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material"
+import { Button, Container, Grid, Typography } from "@mui/material"
 
 import Navbar from "../components/Navbar"
 import '../App.css'
@@ -46,9 +46,61 @@ export default function About():JSX.Element {
                 </Typography>
               </Grid>
 
+              <Grid item xs={12} mb={2}>
+                <hr style={{width: '80%', border: "0.1px solid #000000", opacity: 0.5}}/>
+              </Grid>
+
+              <Grid item xs={12} my={1}>
+                <Typography variant="h4" fontWeight={700}>
+                  CV
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} my={1}>
+                <Typography variant="h6" fontSize={15}>
+                  Selected Exhibitions
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Button
+                  variant="text"
+                  sx={{color: "black", textTransform: 'inherit', paddingX: 0}}
+                  onClick={() => {
+                    window.open(
+                      'https://moonoura.com/artist-spotlight',
+                      "_blank"
+                    )
+                  }} 
+                >
+                  <Typography variant="h6" fontSize={14} mb={1} sx={{opacity: 0.8}}>
+                    2023 | Moonoura, Artist Spotlight: Self-connection exhibit
+                  </Typography>
+                </Button>
+              </Grid>
+
+              <Grid item xs={12} my={1}>
+                <Typography variant="h6" fontSize={15}>
+                  COLLECTIONS
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography variant="h6" fontSize={14} my={1} sx={{opacity: 0.8}}>
+                  2023 | A Digital Minimalistic And Abstract Expression printed on metal
+                </Typography>
+              </Grid>
+
+               
+
+              
+
+              
               <Grid item xs={3} md={1} mt={1} mb={5}>
                 <img width={"100%"} src={ArtLogo} alt="Logo" />
               </Grid>
+
+              
             </Grid>
           </Container>
         </div>
