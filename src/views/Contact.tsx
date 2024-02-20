@@ -26,6 +26,19 @@ export default function Contact():JSX.Element {
                 <Grid item xs={12} mt={1}>
                   <Typography variant="h6" align="center">Please direct all inqueries to</Typography>
                 </Grid>
+                <Grid item xs={12} >
+                  <Typography 
+                    variant="h6" 
+                    align="center" 
+                    color={'primary'}
+                    onClick={() =>
+                      window.open('mailto:aoaclick@gmail.com?subject=Subject&body=Body%20goes%20here')
+                    }
+                    sx={{ cursor: "pointer", "&:hover": {color: 'blue' }}}
+                  >
+                    aoaclick@gmail.com
+                  </Typography>
+                </Grid>
               </Grid>
             </Container>
           
