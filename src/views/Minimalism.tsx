@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material"
+import { Container, Grid, Typography, useTheme, useMediaQuery } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 
 import Navbar from "../components/Navbar"
@@ -7,6 +7,9 @@ import { MinimalismImages } from "../utils/MinimalismImages"
 
 
 export default function Minimalism():JSX.Element {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"))
+
   return (
     <>
       <div>
@@ -59,8 +62,8 @@ export default function Minimalism():JSX.Element {
                             style={{
                               width: "100%", 
                               borderRadius: 50,
-                              minHeight: 455,
-                              maxHeight: 500, 
+                              minHeight: isMobile ? 400 : 455,
+                              maxHeight: isMobile ? 425 : 500, 
                               objectFit: "contain", 
                             }}
                           />
