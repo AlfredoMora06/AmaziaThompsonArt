@@ -1,12 +1,33 @@
 import { Button, Container, Grid } from "@mui/material"
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
+import emailjs from '@emailjs/browser'
+import { useSnackbar } from "notistack"
 
 import TextField from "../Fields/TextField"
 import TextArea from "../Fields/TextArea"
 
 
 export default function ContactUsForm():JSX.Element {
+  const {enqueueSnackbar} = useSnackbar()
+
+  const sendEmail = async (values: any): Promise<void> => {
+    await emailjs.send(
+      `${process.env.REACT_APP_EMAIL_JS_SERVICE_ID}`, 
+      `${process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID}`, 
+      values, 
+      `${process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY}`
+    )
+    .then((result) => {
+      if(result.status === 200){
+        enqueueSnackbar('Email Sent Succesfully', {variant: "success"})
+      } else {
+        enqueueSnackbar('Email could not be sent, please try again later', {variant: "error"})
+      }
+    }, () => {
+      enqueueSnackbar('Email could not be sent, please try again later', {variant: "error"})
+    })
+  }
   
   return (
     <Container>
@@ -14,19 +35,19 @@ export default function ContactUsForm():JSX.Element {
         <Grid item xs={12}>
           <Formik
             initialValues={{
-              name: "",
+              from_name: "",
               email: "",
               message: "",
             }}
             validationSchema={Yup.object().shape({
-              name: Yup.string().required('Name is required'),
+              from_name: Yup.string().required('Name is required'),
               email: Yup.string().required('Email is required'),
               message: Yup.string().required('Message is required'),
             })}
             validateOnMount={true}
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               setSubmitting(true)
-
+              await sendEmail(values)
               setSubmitting(false)
               resetForm()
             }}
@@ -44,12 +65,12 @@ export default function ContactUsForm():JSX.Element {
                     <Grid item xs={11} md={10}>
                       <TextField
                         label={'Name'}
-                        error={Boolean(touched.name && errors.name)}
-                        helperText={touched.name && errors.name}
-                        name="name"
+                        error={Boolean(touched.from_name && errors.from_name)}
+                        helperText={touched.from_name && errors.from_name}
+                        name="from_name"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.name}
+                        value={values.from_name}
                       />
                     </Grid>
                     <Grid item xs={11} md={10}>
